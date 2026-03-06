@@ -12,19 +12,37 @@ The goal of the project is to design a scalable analytics warehouse and semantic
 
 ---
 
+
 ## Architecture Overview
 
-Raw Instacart Dataset
-↓
-Snowflake Data Warehouse
-↓
-dbt Transformations (Staging → Intermediate → Marts)
-↓
-LookML Semantic Layer
-↓
-Business Intelligence / Dashboards
+## Architecture Overview
 
----
+```mermaid
+flowchart TD
+    A[Instacart Raw Dataset] --> B[Snowflake Data Warehouse]
+
+    B --> C[dbt Staging Models]
+    C --> D[dbt Intermediate Models]
+    D --> E[dbt Mart Models]
+
+    E --> F[Fact Tables]
+    E --> G[Dimension Tables]
+    E --> H[Analytical Models]
+
+    F --> I[LookML Semantic Layer]
+    G --> I
+    H --> I
+
+    I --> J[Orders Explore]
+    I --> K[Product Performance Explore]
+    I --> L[Customer RFM Explore]
+    I --> M[Customer Cohort Explore]
+
+    J --> N[Business Intelligence & Dashboards]
+    K --> N
+    L --> N
+    M --> N
+```
 
 ## Project Structure
 
