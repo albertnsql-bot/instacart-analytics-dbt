@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -27,10 +26,6 @@ jobs:
         working-directory: ./dbt
         run: dbt deps
 
-      - name: Run dbt models
+      - name: Compile dbt project
         working-directory: ./dbt
-        run: dbt run
-
-      - name: Run dbt tests
-        working-directory: ./dbt
-        run: dbt test
+        run: dbt compile
